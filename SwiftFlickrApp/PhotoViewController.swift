@@ -13,7 +13,7 @@ class PhotoViewController: UIViewController {
     var photoInfo : Dictionary<String, String>!
     @IBOutlet var photoImageView : UIImageView
     
-    init(coder aDecoder: NSCoder!)
+    required init?(coder aDecoder: NSCoder!)
     {
         super.init(coder: aDecoder)
         self.photoInfo = ["title" : ""]

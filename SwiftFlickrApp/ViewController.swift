@@ -16,7 +16,7 @@ enum LayoutType: Int
 
 class ViewController: UICollectionViewController
 {
-    var photos:Dictionary<String, String>[] = []
+    var photos:[Dictionary<String, String>] = []
     var layoutType = LayoutType.Grid
     
     override func viewDidLoad()
@@ -67,7 +67,7 @@ class ViewController: UICollectionViewController
     
     override func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell!
     {
-        let photoCell: PhotoCell = self.collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as PhotoCell
+        let photoCell: PhotoCell = self.collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
         let photoInfo = photos[indexPath.item] as Dictionary
         let photoUrlString = (self.layoutType == LayoutType.Grid) ? photoInfo["url_q"] : photoInfo["url_z"]
         let photoUrlRequest : NSURLRequest = NSURLRequest(URL: NSURL.URLWithString(photoUrlString))
@@ -122,8 +122,8 @@ class ViewController: UICollectionViewController
     {
         if segue.identifier == "ShowPhoto"
         {
-            let photoCell : PhotoCell = sender as PhotoCell
-            var photoViewController = segue.destinationViewController as PhotoViewController
+            let photoCell : PhotoCell = sender as! PhotoCell
+            var photoViewController = segue.destinationViewController as! PhotoViewController
             photoViewController.photoInfo = photoCell.photoInfo
         }
     }
